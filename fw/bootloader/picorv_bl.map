@@ -1,0 +1,98 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+gCrtRow             0x1               /tmp/ccYjpJ0D.o
+DDR_ptr             0x4               /tmp/ccYjpJ0D.o
+gCrtCol             0x1               /tmp/ccYjpJ0D.o
+gVRAM               0x4               /tmp/ccYjpJ0D.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x000000000e000000 0x0000000000002000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+
+.text           0x000000000e000000      0xc88
+                0x000000000e000000                . = ALIGN (0x4)
+ *(.text)
+ .text          0x000000000e000000       0xe8 /tmp/ccaX0QzI.o
+ .text          0x000000000e0000e8      0x9fc /tmp/ccYjpJ0D.o
+                0x000000000e0000e8                term_clear
+                0x000000000e00013c                SetVRAMPtr
+                0x000000000e000174                term_putchar
+                0x000000000e00024c                term_print
+                0x000000000e000288                uart_print
+                0x000000000e0002a8                term_print_hex
+                0x000000000e000334                term_print_dec
+                0x000000000e000474                irq_handler
+                0x000000000e0004b4                DDR_generate_test_word
+                0x000000000e0004c8                DDR_memtest
+                0x000000000e00069c                spi_send_byte
+                0x000000000e0006dc                spi_recv_byte
+                0x000000000e000718                check_id
+                0x000000000e0007fc                copy_loop
+                0x000000000e000a1c                main
+ *(.text*)
+ *(.rodata)
+ .rodata        0x000000000e000ae4       0x28 /tmp/ccYjpJ0D.o
+ *(.rodata*)
+ .rodata.str1.4
+                0x000000000e000b0c      0x17c /tmp/ccYjpJ0D.o
+                                        0x184 (size before relaxing)
+ *(.srodata)
+ *(.srodata*)
+                0x000000000e000c88                . = ALIGN (0x4)
+                0x000000000e000c88                _etext = .
+                0x000000000e000c88                _sidata = _etext
+
+.rela.dyn       0x000000000e000c88        0x0
+ .rela.text     0x000000000e000c88        0x0 /tmp/ccaX0QzI.o
+
+.data           0x000000000e000c88        0x0
+                0x000000000e000c88                . = ALIGN (0x4)
+                0x000000000e000c88                _sdata = .
+                0x000000000e000c88                _ram_start = .
+                0x000000000e000c88                . = ALIGN (0x4)
+ *(.data)
+ .data          0x000000000e000c88        0x0 /tmp/ccaX0QzI.o
+ .data          0x000000000e000c88        0x0 /tmp/ccYjpJ0D.o
+ *(.data*)
+ *(.sdata)
+ *(.sdata*)
+                0x000000000e000c88                . = ALIGN (0x4)
+                0x000000000e000c88                _edata = .
+
+.bss            0x000000000e000c88       0x14
+                0x000000000e000c88                . = ALIGN (0x4)
+                0x000000000e000c88                _sbss = .
+ *(.bss)
+ .bss           0x000000000e000c88        0x0 /tmp/ccaX0QzI.o
+ .bss           0x000000000e000c88        0x0 /tmp/ccYjpJ0D.o
+ *(.bss*)
+ *(.sbss)
+ .sbss          0x000000000e000c88        0x4 /tmp/ccYjpJ0D.o
+                0x000000000e000c88                enable_uart
+ *(.sbss*)
+ *(COMMON)
+ COMMON         0x000000000e000c8c       0x10 /tmp/ccYjpJ0D.o
+                0x000000000e000c8c                gCrtRow
+                0x000000000e000c90                DDR_ptr
+                0x000000000e000c94                gCrtCol
+                0x000000000e000c98                gVRAM
+                0x000000000e000c9c                . = ALIGN (0x4)
+                0x000000000e000c9c                _ebss = .
+
+.heap           0x000000000e000c9c        0x0
+                0x000000000e000c9c                . = ALIGN (0x4)
+                0x000000000e000c9c                _heap_start = .
+LOAD /tmp/ccaX0QzI.o
+LOAD /tmp/ccYjpJ0D.o
+OUTPUT(picorv_bl.elf elf32-littleriscv)
+
+.comment        0x0000000000000000       0x11
+ .comment       0x0000000000000000       0x11 /tmp/ccYjpJ0D.o
+                                         0x12 (size before relaxing)

@@ -1,0 +1,178 @@
+
+hello.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+0c000000 <start>:
+ c000000:	0e001537          	lui	a0,0xe001
+ c000004:	ff450513          	addi	a0,a0,-12 # e000ff4 <_ebss+0x1fe0fe8>
+ c000008:	00000597          	auipc	a1,0x0
+ c00000c:	07858593          	addi	a1,a1,120 # c000080 <jump_irq>
+ c000010:	0005a603          	lw	a2,0(a1)
+ c000014:	00c52023          	sw	a2,0(a0)
+ c000018:	0045a603          	lw	a2,4(a1)
+ c00001c:	00c52223          	sw	a2,4(a0)
+ c000020:	0085a603          	lw	a2,8(a1)
+ c000024:	00c52423          	sw	a2,8(a0)
+ c000028:	00000517          	auipc	a0,0x0
+ c00002c:	21850513          	addi	a0,a0,536 # c000240 <_etext>
+ c000030:	00020597          	auipc	a1,0x20
+ c000034:	fd058593          	addi	a1,a1,-48 # c020000 <gVram>
+ c000038:	00020617          	auipc	a2,0x20
+ c00003c:	fd060613          	addi	a2,a2,-48 # c020008 <_edata>
+ c000040:	00c5dc63          	ble	a2,a1,c000058 <end_init_data>
+
+0c000044 <loop_init_data>:
+ c000044:	00052683          	lw	a3,0(a0)
+ c000048:	00d5a023          	sw	a3,0(a1)
+ c00004c:	00450513          	addi	a0,a0,4
+ c000050:	00458593          	addi	a1,a1,4
+ c000054:	fec5c8e3          	blt	a1,a2,c000044 <loop_init_data>
+
+0c000058 <end_init_data>:
+ c000058:	00020517          	auipc	a0,0x20
+ c00005c:	fb050513          	addi	a0,a0,-80 # c020008 <_edata>
+ c000060:	00020597          	auipc	a1,0x20
+ c000064:	fac58593          	addi	a1,a1,-84 # c02000c <_ebss>
+ c000068:	00b55863          	ble	a1,a0,c000078 <end_init_bss>
+
+0c00006c <loop_init_bss>:
+ c00006c:	00052023          	sw	zero,0(a0)
+ c000070:	00450513          	addi	a0,a0,4
+ c000074:	feb54ce3          	blt	a0,a1,c00006c <loop_init_bss>
+
+0c000078 <end_init_bss>:
+ c000078:	00000097          	auipc	ra,0x0
+ c00007c:	178080e7          	jalr	376(ra) # c0001f0 <main>
+
+0c000080 <jump_irq>:
+ c000080:	0c000537          	lui	a0,0xc000
+ c000084:	08c50513          	addi	a0,a0,140 # c00008c <irq>
+ c000088:	00050067          	jr	a0
+
+0c00008c <irq>:
+ c00008c:	00018513          	mv	a0,gp
+ c000090:	00000097          	auipc	ra,0x0
+ c000094:	008080e7          	jalr	8(ra) # c000098 <irq_handler>
+
+0c000098 <irq_handler>:
+ c000098:	0000006f          	j	c000098 <irq_handler>
+
+0c00009c <term_clear>:
+ c00009c:	0c0207b7          	lui	a5,0xc020
+ c0000a0:	08000737          	lui	a4,0x8000
+ c0000a4:	00e7a023          	sw	a4,0(a5) # c020000 <gVram>
+ c0000a8:	000017b7          	lui	a5,0x1
+ c0000ac:	96078793          	addi	a5,a5,-1696 # 960 <start-0xbfff6a0>
+ c0000b0:	0c0206b7          	lui	a3,0xc020
+ c0000b4:	02000593          	li	a1,32
+ c0000b8:	0006a703          	lw	a4,0(a3) # c020000 <gVram>
+ c0000bc:	00470613          	addi	a2,a4,4 # 8000004 <start-0x3fffffc>
+ c0000c0:	00c6a023          	sw	a2,0(a3)
+ c0000c4:	00b72023          	sw	a1,0(a4)
+ c0000c8:	fff78793          	addi	a5,a5,-1
+ c0000cc:	fe0796e3          	bnez	a5,c0000b8 <term_clear+0x1c>
+ c0000d0:	0c0207b7          	lui	a5,0xc020
+ c0000d4:	08000737          	lui	a4,0x8000
+ c0000d8:	00e7a023          	sw	a4,0(a5) # c020000 <gVram>
+ c0000dc:	0c0207b7          	lui	a5,0xc020
+ c0000e0:	00078223          	sb	zero,4(a5) # c020004 <gCrtRow>
+ c0000e4:	0c0207b7          	lui	a5,0xc020
+ c0000e8:	00078423          	sb	zero,8(a5) # c020008 <_edata>
+ c0000ec:	00008067          	ret
+
+0c0000f0 <SetVramPtr>:
+ c0000f0:	0c0207b7          	lui	a5,0xc020
+ c0000f4:	0047c703          	lbu	a4,4(a5) # c020004 <gCrtRow>
+ c0000f8:	00271793          	slli	a5,a4,0x2
+ c0000fc:	00e787b3          	add	a5,a5,a4
+ c000100:	00479793          	slli	a5,a5,0x4
+ c000104:	0c020737          	lui	a4,0xc020
+ c000108:	00874703          	lbu	a4,8(a4) # c020008 <_edata>
+ c00010c:	00e787b3          	add	a5,a5,a4
+ c000110:	00279793          	slli	a5,a5,0x2
+ c000114:	08000737          	lui	a4,0x8000
+ c000118:	00f707b3          	add	a5,a4,a5
+ c00011c:	0c020737          	lui	a4,0xc020
+ c000120:	00f72023          	sw	a5,0(a4) # c020000 <gVram>
+ c000124:	00008067          	ret
+
+0c000128 <term_putchar>:
+ c000128:	ff010113          	addi	sp,sp,-16
+ c00012c:	00112623          	sw	ra,12(sp)
+ c000130:	00a00793          	li	a5,10
+ c000134:	02f50663          	beq	a0,a5,c000160 <term_putchar+0x38>
+ c000138:	00d00793          	li	a5,13
+ c00013c:	06f50263          	beq	a0,a5,c0001a0 <term_putchar+0x78>
+ c000140:	0c020737          	lui	a4,0xc020
+ c000144:	00072783          	lw	a5,0(a4) # c020000 <gVram>
+ c000148:	00478693          	addi	a3,a5,4
+ c00014c:	00d72023          	sw	a3,0(a4)
+ c000150:	00a7a023          	sw	a0,0(a5)
+ c000154:	00c12083          	lw	ra,12(sp)
+ c000158:	01010113          	addi	sp,sp,16
+ c00015c:	00008067          	ret
+ c000160:	0c0207b7          	lui	a5,0xc020
+ c000164:	0047c783          	lbu	a5,4(a5) # c020004 <gCrtRow>
+ c000168:	00178793          	addi	a5,a5,1
+ c00016c:	0ff7f793          	andi	a5,a5,255
+ c000170:	01d00713          	li	a4,29
+ c000174:	02f76063          	bltu	a4,a5,c000194 <term_putchar+0x6c>
+ c000178:	0c020737          	lui	a4,0xc020
+ c00017c:	00f70223          	sb	a5,4(a4) # c020004 <gCrtRow>
+ c000180:	0c0207b7          	lui	a5,0xc020
+ c000184:	00078423          	sb	zero,8(a5) # c020008 <_edata>
+ c000188:	00000097          	auipc	ra,0x0
+ c00018c:	f68080e7          	jalr	-152(ra) # c0000f0 <SetVramPtr>
+ c000190:	fc5ff06f          	j	c000154 <term_putchar+0x2c>
+ c000194:	0c0207b7          	lui	a5,0xc020
+ c000198:	00078223          	sb	zero,4(a5) # c020004 <gCrtRow>
+ c00019c:	fe5ff06f          	j	c000180 <term_putchar+0x58>
+ c0001a0:	0c0207b7          	lui	a5,0xc020
+ c0001a4:	00078423          	sb	zero,8(a5) # c020008 <_edata>
+ c0001a8:	00000097          	auipc	ra,0x0
+ c0001ac:	f48080e7          	jalr	-184(ra) # c0000f0 <SetVramPtr>
+ c0001b0:	fa5ff06f          	j	c000154 <term_putchar+0x2c>
+
+0c0001b4 <term_print>:
+ c0001b4:	ff010113          	addi	sp,sp,-16
+ c0001b8:	00112623          	sw	ra,12(sp)
+ c0001bc:	00812423          	sw	s0,8(sp)
+ c0001c0:	00050413          	mv	s0,a0
+ c0001c4:	00054503          	lbu	a0,0(a0)
+ c0001c8:	00050c63          	beqz	a0,c0001e0 <term_print+0x2c>
+ c0001cc:	00140413          	addi	s0,s0,1
+ c0001d0:	00000097          	auipc	ra,0x0
+ c0001d4:	f58080e7          	jalr	-168(ra) # c000128 <term_putchar>
+ c0001d8:	00044503          	lbu	a0,0(s0)
+ c0001dc:	fe0518e3          	bnez	a0,c0001cc <term_print+0x18>
+ c0001e0:	00c12083          	lw	ra,12(sp)
+ c0001e4:	00812403          	lw	s0,8(sp)
+ c0001e8:	01010113          	addi	sp,sp,16
+ c0001ec:	00008067          	ret
+
+0c0001f0 <main>:
+ c0001f0:	ff010113          	addi	sp,sp,-16
+ c0001f4:	00112623          	sw	ra,12(sp)
+ c0001f8:	00812423          	sw	s0,8(sp)
+ c0001fc:	03000437          	lui	s0,0x3000
+ c000200:	00100793          	li	a5,1
+ c000204:	00f42223          	sw	a5,4(s0) # 3000004 <start-0x8fffffc>
+ c000208:	00000097          	auipc	ra,0x0
+ c00020c:	ee8080e7          	jalr	-280(ra) # c0000f0 <SetVramPtr>
+ c000210:	0c000537          	lui	a0,0xc000
+ c000214:	22c50513          	addi	a0,a0,556 # c00022c <main+0x3c>
+ c000218:	00000097          	auipc	ra,0x0
+ c00021c:	f9c080e7          	jalr	-100(ra) # c0001b4 <term_print>
+ c000220:	00200793          	li	a5,2
+ c000224:	00f42223          	sw	a5,4(s0)
+ c000228:	0000006f          	j	c000228 <main+0x38>
+ c00022c:	6548                	flw	fa0,12(a0)
+ c00022e:	6c6c                	flw	fa1,92(s0)
+ c000230:	6150206f          	j	c003044 <_etext+0x2e04>
+ c000234:	6f6e                	flw	ft10,216(sp)
+ c000236:	5720                	lw	s0,104(a4)
+ c000238:	646c726f          	jal	tp,c0c787e <_ebss+0xa7872>
+ c00023c:	0a21                	addi	s4,s4,8
+	...
