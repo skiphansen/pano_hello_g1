@@ -1,8 +1,8 @@
-# Simple "Hello World" base project for Pano Logic G1
+# Simple "Hello World" base project for Panologic G1
 ![Pano](./assets/pano_hello.png) 
 
 This project is intended to serve as a starting point for other projects 
-targeting the first generation of the Pano Logic thin client.
+targeting the first generation of the Panologic thin client.
 
 This base includes the following features in HDL:
 
@@ -20,9 +20,9 @@ Not supported yet:
 - Ethernet port
 - Audio 
 
-## What is a Pano Logic device and why do I care?
+## What is a Panologic device and why do I care?
 
-Pano Logic was a Bay Area startup that manufactured tiny thin clients that 
+Panologic was a Bay Area startup that manufactured tiny thin clients that 
 were connected to a central server.  The Pano devices have a Ethernet 
 interface, a few USB ports, audio input and output ports, and one or two 
 video ports.  
@@ -35,17 +35,17 @@ of the G2 devices were based on the Spartan-6 LX150 which is the largest
 chip in the family.  The revision C G2 device is based on the smaller 
 LX100 device which is still quite large by hobbist standards.  
 
-Unfortunately for Pano Logic, but fortunate for FPGA hobbyists Pano Logic 
-when out of business in 2012.  Shortly thereafter **TONS** of both new and 
-used Pano Logic devices started showing up on ebay for very little money 
+Unfortunately for Panologic, but fortunate for FPGA hobbyists Panologic 
+went out of business in 2012.  Shortly thereafter **TONS** of both new and 
+used Panologic devices started showing up on ebay for very little money 
 since they were pretty much useless without support.  Even today (Oct 
-2019) both versions of the Pano Logic devices are still readily available 
+2019) both versions of the Panologic devices are still readily available 
 on ebay for little. 
 
 ![Pile of Panos](./assets/pano_pile.png) 
 
-Tom Verbeure has spent a lot of time reverse engineering the Pano Logic 
-devices and created a absolute mind blowing raytracing demo that runs on a 
+Tom Verbeure has spent a lot of time reverse engineering the Panologic 
+devices and created an absolute mind blowing raytracing demo that runs on a 
 G1 device.  It was the [Hackaday article](https://hackaday.com/2018/12/07/racing-the-beam-on-a-thin-client-in-fpgas/) article on his project that originally 
 attracted my attention to the Pano hacking scene.  
 
@@ -53,12 +53,12 @@ Tom's article also got the attention of Wenting Zhang who added support
 for the G1's SDRAM and USB controller as well as making it possible to 
 execute code on a soft processor directly from the SPI flash.  
 
-This project was derived directly an early commit from his [Verilog Boy](https://hackaday.io/project/57660-verilogboy-gameboy-on-fpga) project
-before he moved to an an execute in place (XIP) model.  
+This project was derived directly from an early commit from his [Verilog Boy](https://hackaday.io/project/57660-verilogboy-gameboy-on-fpga) project
+before he moved to an execute in place (XIP) model.  
 
 ## HW Requirements
 
-* A first generation Pano Logic thin client (G1, the one with a VGA port)
+* A first generation Panologic thin client (G1, the one with a VGA port)
 * A suitable 5 volt power supply
 * A JTAG programmer to load the bitstream into flash
 
@@ -197,7 +197,7 @@ my email address in the git log.
 
 ## Acknowledgement and Thanks
 
-Tom Verbeure's reverse engineering efforts and Pano logic [bring up](https://github.com/tomverbeure/panologic) code made it possible
+Tom Verbeure's reverse engineering efforts and Panologic [bring up](https://github.com/tomverbeure/panologic) code made it possible
 to get projects up and running rapidly without the reverse engineering drudgery.
 Without Tom's work I would still be thinking of getting involved with FPGAs
 "some day".
@@ -206,7 +206,7 @@ I started this project by cloning Wenting Zhang's [VerilogBoy](https://github.co
 project and then removing the Gameboy portions.
 
 Wenting's contributions of bringing up the LPDDR Ram and USB subsystems on the 
-first generation Pano Logic device has opened up the window of possibilities 
+first generation Panologic device has opened up a window of possibilities 
 for Pano hacking immeasurably. Mr Zhang has my sincere thanks and admiration 
 for his brilliant work.
 
@@ -226,7 +226,7 @@ for his brilliant work.
 - https://github.com/tomverbeure/panologic-g2
 - https://twj42.github.io/PanoLogicG2_ReverseEngineering/
 - [Group](https://groups.io/g/panohackers/topics) for discussions about Panologic hacking 
-
+- [Gitter](https://gitter.im/panologic/community) chat room for Panologic hackers.
 
 ## LEGAL 
 
