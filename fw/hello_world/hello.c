@@ -1,21 +1,9 @@
 #include <stdint.h>
-
-#define SCREEN_X     80
-#define SCREEN_Y     30
-
-#define LED_RED      0x1
-#define LED_GREEN    0x2
-#define LED_BLUE     0x4
-
-#define LEDS_ADR     0x03000004
-
-// For VRAM, only the lowest byte in each 32bit word is used
-#define vram         ((volatile uint32_t *)0x08000000)
-#define leds         *((volatile uint32_t *)LEDS_ADR)
+#include "pano_io.h"
 
 uint8_t gCrtRow = 3;
 uint8_t gCrtCol;
-volatile uint32_t *gVram = vram;
+volatile uint32_t *gVram = VRAM;
 
 void term_clear(void);
 void term_putchar(char c);
@@ -24,10 +12,11 @@ void SetVramPtr(void);
 
 void main() 
 {
-   leds = LED_RED;
+   LEDS = LED_RED;
    SetVramPtr();
+   term_print("Hello world compiled " __DATE__ " " __TIME__ "\n");
    term_print("Hello Pano World!\n");
-   leds = LED_GREEN;
+   LEDS = LED_GREEN;
    for( ; ; );
 }
 
@@ -35,18 +24,18 @@ void main()
 
 void term_clear() 
 {
-   gVram = vram;
+   gVram = VRAM;
    for(int i = 0; i < SCREEN_X * SCREEN_Y; i++) {
       *gVram++ = 0x20;
    }
-   gVram = vram;
+   gVram = VRAM;
    gCrtRow = 0;
    gCrtCol = 0;
 }
 
 void SetVramPtr()
 {
-   gVram = vram + gCrtCol + (gCrtRow * SCREEN_X);
+   gVram = VRAM + gCrtCol + (gCrtRow * SCREEN_X);
 }
 
 void term_putchar(char c)
