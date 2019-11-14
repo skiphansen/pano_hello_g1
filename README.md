@@ -211,7 +211,8 @@ for Pano hacking immeasurably. Mr Zhang has my sincere thanks and admiration
 for his brilliant work.
 
 ## Pano Links
-
+- [Gitter](https://gitter.im/panologic/community) chat room for Panologic hackers.
+- Group.io [group](https://groups.io/g/panohackers/topics) for discussions about Panologic hacking 
 - [Original Hackaday](https://hackaday.com/2013/01/11/ask-hackaday-we-might-have-some-fpgas-to-hack/) article from 2013.  
 - Hackady article on Tom's [Raytracker](https://hackaday.com/2018/12/07/racing-the-beam-on-a-thin-client-in-fpgas/).  
 - Hackaday article on my [Pacman](https://hackaday.com/2019/01/11/pac-man-fever-comes-to-the-pano-logic-fpga/) project.  
@@ -225,9 +226,7 @@ for his brilliant work.
 - G1 [Schematics!](https://github.com/twj42/PanoLogicG2_ReverseEngineering/blob/master/files/G1_Schematics.zip)
 - https://github.com/tomverbeure/panologic-g2
 - https://twj42.github.io/PanoLogicG2_ReverseEngineering/
-- [Group](https://groups.io/g/panohackers/topics) for discussions about Panologic hacking 
-- [Gitter](https://gitter.im/panologic/community) chat room for Panologic hackers.
-
+- http://www.forofpga.es/viewtopic.php?f=181&t=189
 ## LEGAL 
 
 This project was derived directly form Wenting Zhang's Verilog Boy project 
